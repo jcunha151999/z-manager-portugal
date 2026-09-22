@@ -2,155 +2,209 @@
 <html lang="pt">
 <head>
 <meta charset="UTF-8">
-
-<meta name="viewport"
-      content="width=device-width, initial-scale=1, viewport-fit=cover">
-
-<meta name="theme-color" content="#080808">
-
-<meta name="apple-mobile-web-app-capable" content="yes">
-<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
-<meta name="apple-mobile-web-app-title" content="Z Manager">
-
-<title>Z Manager Portugal 26/27</title>
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Z Manager Portugal</title>
 
 <style>
-* {
-    box-sizing: border-box;
-    -webkit-tap-highlight-color: transparent;
+*{box-sizing:border-box}
+body{
+ margin:0;
+ font-family:Arial,Helvetica,sans-serif;
+ background:#0b0b0d;
+ color:#fff;
+}
+header{
+ background:linear-gradient(135deg,#080808,#171717);
+ padding:18px;
+ border-bottom:2px solid #e30613;
+ position:sticky;
+ top:0;
+ z-index:20;
+}
+.logo{
+ font-size:25px;
+ font-weight:900;
+}
+.logo span{color:#e30613}
+.sub{font-size:12px;color:#aaa;margin-top:4px}
+
+nav{
+ display:flex;
+ gap:8px;
+ overflow-x:auto;
+ padding:10px;
+ background:#111;
+ position:sticky;
+ top:76px;
+ z-index:19;
+}
+nav button{
+ border:0;
+ background:#202024;
+ color:white;
+ padding:11px 15px;
+ border-radius:8px;
+ white-space:nowrap;
+}
+nav button.active{
+ background:#e30613;
 }
 
-body {
-    margin: 0;
-    background: #080808;
-    color: white;
-    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Arial, sans-serif;
+main{
+ max-width:1200px;
+ margin:auto;
+ padding:15px;
 }
 
-header {
-    background: linear-gradient(135deg, #050505, #d00018);
-    padding: 18px;
-    text-align: center;
+.page{display:none}
+.page.active{display:block}
+
+.hero{
+ background:linear-gradient(135deg,#171719,#090909);
+ border:1px solid #29292d;
+ border-radius:15px;
+ padding:22px;
+ margin-bottom:15px;
+}
+.hero h1{margin:0 0 8px;font-size:27px}
+.hero p{color:#aaa;margin:0}
+
+.grid{
+ display:grid;
+ grid-template-columns:repeat(auto-fit,minmax(170px,1fr));
+ gap:12px;
 }
 
-.logo {
-    font-size: 42px;
-    font-weight: 900;
+.card{
+ background:#151518;
+ border:1px solid #29292d;
+ border-radius:13px;
+ padding:16px;
+}
+.card h3{margin-top:0}
+
+.stat{
+ font-size:28px;
+ font-weight:900;
+ color:#e30613;
+}
+.muted{color:#999;font-size:13px}
+
+select,input{
+ width:100%;
+ background:#101012;
+ border:1px solid #343438;
+ color:white;
+ padding:12px;
+ border-radius:9px;
+ margin:5px 0;
 }
 
-.logo span {
-    color: #ff1830;
+button.action{
+ background:#e30613;
+ border:0;
+ color:#fff;
+ padding:11px 15px;
+ border-radius:8px;
+ font-weight:bold;
+ cursor:pointer;
+}
+button.secondary{
+ background:#29292d;
+ border:0;
+ color:#fff;
+ padding:11px 15px;
+ border-radius:8px;
+ cursor:pointer;
 }
 
-.subtitle {
-    color: #ddd;
-    margin-top: 3px;
+table{
+ width:100%;
+ border-collapse:collapse;
+ margin-top:10px;
+}
+th,td{
+ padding:10px 7px;
+ border-bottom:1px solid #29292d;
+ text-align:left;
+ font-size:13px;
+}
+th{color:#aaa}
+
+.player{
+ display:flex;
+ justify-content:space-between;
+ align-items:center;
+ gap:10px;
+ background:#18181b;
+ border:1px solid #29292d;
+ border-radius:11px;
+ padding:12px;
+ margin:7px 0;
+}
+.player strong{display:block}
+.player small{color:#999}
+
+.rating{
+ background:#e30613;
+ padding:7px 9px;
+ border-radius:8px;
+ font-weight:bold;
 }
 
-main {
-    max-width: 1100px;
-    margin: auto;
-    padding: 15px;
+.club{
+ cursor:pointer;
+ transition:.15s;
+}
+.club:hover{border-color:#e30613}
+
+.badge{
+ display:inline-block;
+ padding:4px 7px;
+ border-radius:5px;
+ background:#252529;
+ color:#bbb;
+ font-size:11px;
 }
 
-.card {
-    background: #17171b;
-    border: 1px solid #29292e;
-    border-radius: 16px;
-    padding: 18px;
-    margin-bottom: 15px;
+.modal{
+ display:none;
+ position:fixed;
+ inset:0;
+ background:rgba(0,0,0,.8);
+ z-index:50;
+ padding:20px;
+ overflow:auto;
+}
+.modal-box{
+ max-width:650px;
+ margin:40px auto;
+ background:#151518;
+ border:1px solid #333;
+ border-radius:15px;
+ padding:20px;
 }
 
-h2 {
-    margin-top: 0;
+.notice{
+ padding:12px;
+ background:#201214;
+ border-left:4px solid #e30613;
+ border-radius:7px;
+ margin:10px 0;
+ color:#ddd;
 }
 
-select,
-button {
-    width: 100%;
-    padding: 15px;
-    margin: 6px 0;
-    border: none;
-    border-radius: 11px;
-    font-size: 16px;
-    font-weight: bold;
+footer{
+ text-align:center;
+ color:#666;
+ padding:30px 10px;
+ font-size:12px;
 }
 
-select {
-    background: #29292e;
-    color: white;
-}
-
-button {
-    background: #d00018;
-    color: white;
-}
-
-button:active {
-    transform: scale(.98);
-}
-
-.grid {
-    display: grid;
-    grid-template-columns: repeat(2, 1fr);
-    gap: 10px;
-}
-
-.stat {
-    background: #232328;
-    padding: 15px;
-    border-radius: 12px;
-}
-
-.stat-number {
-    font-size: 25px;
-    font-weight: bold;
-}
-
-.small {
-    color: #999;
-    font-size: 13px;
-}
-
-table {
-    width: 100%;
-    border-collapse: collapse;
-}
-
-th,
-td {
-    padding: 10px 5px;
-    border-bottom: 1px solid #303035;
-    text-align: left;
-}
-
-.nav {
-    display: grid;
-    grid-template-columns: repeat(3, 1fr);
-    gap: 7px;
-}
-
-.hidden {
-    display: none;
-}
-
-@media (orientation: landscape) {
-
-    main {
-        max-width: 1150px;
-    }
-
-    .grid {
-        grid-template-columns: repeat(4, 1fr);
-    }
-
-    header {
-        padding: 10px;
-    }
-
-    .logo {
-        font-size: 32px;
-    }
+@media(max-width:600px){
+ .hero h1{font-size:22px}
+ th,td{font-size:12px}
+ .player{padding:10px}
 }
 </style>
 </head>
@@ -158,457 +212,1184 @@ td {
 <body>
 
 <header>
-
-    <div class="logo">
-        <span>Z</span> MANAGER
-    </div>
-
-    <div class="subtitle">
-        Portugal • 2026/27
-    </div>
-
+ <div class="logo">Z <span>MANAGER</span> PORTUGAL</div>
+ <div class="sub">Football Manager português • Época 2026/27</div>
 </header>
+
+<nav>
+ <button class="active" onclick="page('inicio',this)">Início</button>
+ <button onclick="page('clubes',this)">Clubes</button>
+ <button onclick="page('jogadores',this)">Jogadores</button>
+ <button onclick="page('mercado',this)">Mercado</button>
+ <button onclick="page('tatica',this)">Tática</button>
+ <button onclick="page('liga',this)">Classificação</button>
+ <button onclick="page('calendario',this)">Calendário</button>
+ <button onclick="page('carreira',this)">Carreira</button>
+</nav>
 
 <main>
 
-    <!-- MENU PRINCIPAL -->
+<section id="inicio" class="page active">
 
-    <div id="menu" class="card">
+ <div class="hero">
+  <h1>Bem-vindo ao Z Manager Portugal 🇵🇹</h1>
+  <p>Assume o comando de um clube português e constrói a tua carreira.</p>
+ </div>
 
-        <h2>⚽ Nova carreira</h2>
+ <div class="grid">
+  <div class="card">
+   <div class="stat" id="clubCount">0</div>
+   <div class="muted">Clubes disponíveis</div>
+  </div>
 
-        <p class="small">
-            Escolhe o clube que queres treinar.
-        </p>
+  <div class="card">
+   <div class="stat" id="playerCount">0</div>
+   <div class="muted">Jogadores na base</div>
+  </div>
 
-        <select id="clubSelect">
+  <div class="card">
+   <div class="stat">26/27</div>
+   <div class="muted">Época</div>
+  </div>
 
-            <option>Benfica</option>
-            <option>FC Porto</option>
-            <option>Sporting CP</option>
-            <option>SC Braga</option>
-            <option>Vitória SC</option>
-            <option>Gil Vicente</option>
-            <option>Famalicão</option>
-            <option>Rio Ave</option>
-            <option>Santa Clara</option>
-            <option>Nacional</option>
-            <option>Estrela da Amadora</option>
-            <option>Casa Pia</option>
-            <option>Alverca</option>
-            <option>Marítimo</option>
-            <option>Académico Viseu</option>
+  <div class="card">
+   <div class="stat">4</div>
+   <div class="muted">Competições</div>
+  </div>
+ </div>
 
-        </select>
+ <div class="hero" style="margin-top:15px">
+  <h2>Começar carreira</h2>
 
-        <button onclick="startCareer()">
-            COMEÇAR CARREIRA
-        </button>
+  <label>Escolhe a competição</label>
+  <select id="startLeague" onchange="fillStartClubs()"></select>
 
-        <button onclick="fullScreen()">
-            ⛶ ECRÃ COMPLETO
-        </button>
+  <label>Escolhe o clube</label>
+  <select id="startClub"></select>
 
-    </div>
+  <button class="action" onclick="startCareer()">Começar carreira</button>
+ </div>
 
+ <div id="careerBox"></div>
 
-    <!-- JOGO -->
-
-    <div id="game" class="hidden">
-
-        <div class="card">
-
-            <h2 id="clubName"></h2>
-
-            <div class="grid">
-
-                <div class="stat">
-                    <div class="stat-number">2026/27</div>
-                    <div class="small">Época</div>
-                </div>
-
-                <div class="stat">
-                    <div id="budget" class="stat-number">
-                        €10M
-                    </div>
-                    <div class="small">Orçamento</div>
-                </div>
-
-                <div class="stat">
-                    <div id="points" class="stat-number">
-                        0
-                    </div>
-                    <div class="small">Pontos</div>
-                </div>
-
-                <div class="stat">
-                    <div id="games" class="stat-number">
-                        0
-                    </div>
-                    <div class="small">Jogos</div>
-                </div>
-
-            </div>
-
-        </div>
+</section>
 
 
-        <!-- PLANTEL -->
+<section id="clubes" class="page">
 
-        <div class="card">
+ <div class="hero">
+  <h1>Clubes 🇵🇹</h1>
+  <p>Escolhe um clube para consultar o plantel.</p>
+ </div>
 
-            <h3>👥 Plantel</h3>
+ <select id="clubLeague" onchange="renderClubs()"></select>
 
-            <table>
+ <input id="clubSearch"
+        placeholder="Pesquisar clube..."
+        oninput="renderClubs()">
 
-                <thead>
+ <div id="clubList" class="grid"></div>
 
-                    <tr>
-                        <th>Jogador</th>
-                        <th>Posição</th>
-                        <th>Idade</th>
-                    </tr>
-
-                </thead>
-
-                <tbody id="squad"></tbody>
-
-            </table>
-
-        </div>
+</section>
 
 
-        <!-- AÇÕES -->
+<section id="jogadores" class="page">
 
-        <div class="card">
+ <div class="hero">
+  <h1>Jogadores</h1>
+  <p>Pesquisa jogadores por nome, clube ou posição.</p>
+ </div>
 
-            <h3>🎮 Gestão</h3>
+ <input id="playerSearch"
+        placeholder="Pesquisar jogador..."
+        oninput="renderPlayers()">
 
-            <div class="nav">
+ <div class="grid">
+  <select id="playerLeague" onchange="renderPlayers()"></select>
+  <select id="playerPosition" onchange="renderPlayers()">
+   <option value="">Todas as posições</option>
+   <option>GR</option>
+   <option>DC</option>
+   <option>DD</option>
+   <option>DE</option>
+   <option>MC</option>
+   <option>MD</option>
+   <option>ME</option>
+   <option>MO</option>
+   <option>EXT</option>
+   <option>PL</option>
+  </select>
+ </div>
 
-                <button onclick="simulateMatch()">
-                    ⚽ Jornada
-                </button>
+ <div id="playerList"></div>
 
-                <button onclick="transferMarket()">
-                    💰 Mercado
-                </button>
-
-                <button onclick="tactics()">
-                    🧠 Táticas
-                </button>
-
-            </div>
-
-        </div>
+</section>
 
 
-        <!-- RESULTADO -->
+<section id="mercado" class="page">
 
-        <div id="result" class="card hidden">
+ <div class="hero">
+  <h1>Mercado de Transferências 🔄</h1>
+  <p>Procura jogadores e tenta contratar reforços.</p>
+ </div>
 
-            <h3>📅 Último jogo</h3>
+ <div id="marketInfo" class="notice"></div>
 
-            <div id="resultText"></div>
+ <input id="marketSearch"
+        placeholder="Pesquisar jogador..."
+        oninput="renderMarket()">
 
-        </div>
+ <div id="marketList"></div>
 
-    </div>
+</section>
+
+
+<section id="tatica" class="page">
+
+ <div class="hero">
+  <h1>Tática 🧠</h1>
+  <p>Define a formação e os titulares.</p>
+ </div>
+
+ <div class="card">
+
+  <label>Formação</label>
+
+  <select id="formation" onchange="renderTactic()">
+   <option>4-3-3</option>
+   <option>4-2-3-1</option>
+   <option>4-4-2</option>
+   <option>3-5-2</option>
+   <option>3-4-3</option>
+   <option>5-3-2</option>
+  </select>
+
+  <div id="tacticBoard"></div>
+
+  <button class="action" onclick="saveGame()">Guardar tática</button>
+
+ </div>
+
+</section>
+
+
+<section id="liga" class="page">
+
+ <div class="hero">
+  <h1>Classificação 📊</h1>
+  <p>Classificações simuladas da tua carreira.</p>
+ </div>
+
+ <select id="tableLeague" onchange="renderTable()"></select>
+
+ <div class="card">
+  <table>
+   <thead>
+    <tr>
+     <th>#</th>
+     <th>Clube</th>
+     <th>J</th>
+     <th>V</th>
+     <th>E</th>
+     <th>D</th>
+     <th>DG</th>
+     <th>PTS</th>
+    </tr>
+   </thead>
+   <tbody id="tableBody"></tbody>
+  </table>
+ </div>
+
+</section>
+
+
+<section id="calendario" class="page">
+
+ <div class="hero">
+  <h1>Calendário 📅</h1>
+  <p>Jogos da tua carreira.</p>
+ </div>
+
+ <div id="fixtures"></div>
+
+</section>
+
+
+<section id="carreira" class="page">
+
+ <div class="hero">
+  <h1>A minha carreira</h1>
+  <p>Dados guardados no teu navegador.</p>
+ </div>
+
+ <div id="careerDetails"></div>
+
+ <button class="action" onclick="saveGame()">Guardar jogo</button>
+ <button class="secondary" onclick="resetGame()">Nova carreira</button>
+
+</section>
 
 </main>
+
+<footer>
+ Z Manager Portugal • Projeto independente • 2026/27
+</footer>
+
+
+<div id="modal" class="modal" onclick="closeModal(event)">
+ <div class="modal-box" id="modalContent"></div>
+</div>
 
 
 <script>
 
-/* =========================
+/* ===========================
+   CLUBES
+=========================== */
+
+const clubs = {
+
+ "Primeira Liga":[
+  "SL Benfica",
+  "Sporting CP",
+  "FC Porto",
+  "SC Braga",
+  "Vitória SC",
+  "Rio Ave FC",
+  "FC Famalicão",
+  "Gil Vicente FC",
+  "Estoril Praia",
+  "Casa Pia AC",
+  "FC Alverca",
+  "Moreirense FC",
+  "CD Nacional",
+  "Santa Clara",
+  "FC Arouca",
+  "Estrela Amadora",
+  "AVS Futebol SAD",
+  "Torreense"
+ ],
+
+ "Segunda Liga":[
+  "Lusitânia de Lourosa",
+  "FC Penafiel",
+  "Sporting B",
+  "FC Vizela",
+  "UD Leiria",
+  "Benfica B",
+  "Leixões SC",
+  "CD Tondela",
+  "Académica",
+  "SC Farense",
+  "Portimonense",
+  "AFS",
+  "FC Felgueiras",
+  "Torreense",
+  "Amarante FC",
+  "GD Chaves",
+  "FC Porto B",
+  "CD Feirense"
+ ],
+
+ "Liga 3":[
+  "AD Marco 09",
+  "AD Fafe",
+  "Leça FC",
+  "Paços de Ferreira",
+  "São João de Ver",
+  "Trofense",
+  "USC Paredes",
+  "Varzim SC",
+  "SC Vianense",
+  "Vitória SC B",
+  "Académica",
+  "Atlético CP",
+  "Amora FC",
+  "Belenenses",
+  "Caldas SC",
+  "1.º Dezembro",
+  "Loures",
+  "Sporting CP B",
+  "FC Oliveira Hospital",
+  "Marítimo B"
+ ],
+
+ "Campeonato de Portugal":[
+  "Bragança",
+  "Tirsense",
+  "GD Chaves B",
+  "Ovarense",
+  "Machico",
+  "Camacha",
+  "Mortágua FC",
+  "FC Oliveira Hospital",
+  "Marialvas",
+  "Sintrense",
+  "Imortal DC",
+  "Serpa",
+  "Beira-Mar",
+  "Salgueiros",
+  "Vila Real",
+  "Pevidém",
+  "Amarante B",
+  "Paredes B",
+  "Coimbrões",
+  "Vianense B",
+  "Atlético CP B",
+  "Moura",
+  "Oriental",
+  "União de Santarém",
+  "Lusitano Évora",
+  "Estrela B",
+  "Sporting de Pombal",
+  "Alverca B",
+  "Loures B",
+  "Marinhense",
+  "Portalegrense",
+  "Fátima",
+  "Marítimo B",
+  "Camacha B",
+  "Brito SC",
+  "Limianos",
+  "Torreense B",
+  "Peniche",
+  "União de Leiria B",
+  "Oliveirense",
+  "Sourense",
+  "Vasco da Gama Vidigueira",
+  "Mafra B",
+  "Lagos",
+  "Moncarapachense",
+  "Fabril",
+  "Atlético Reguengos",
+  "Praiense",
+  "Angrense",
+  "Operário Açores",
+  "Rabo Peixe",
+  "Fontinhas",
+  "Juventude Évora",
+  "Aljustrelense",
+  "Caldas B",
+  "Figueirense",
+  "Sertanense"
+ ]
+
+};
+
+
+/* ===========================
    JOGADORES
-========================= */
+   Base inicial real
+=========================== */
 
 const players = [
 
-    {
-        name: "Diogo Costa",
-        club: "FC Porto",
-        position: "Guarda-redes",
-        age: 26
-    },
+/* BENFICA */
+["Trubin","SL Benfica","GR",24,84],
+["Otamendi","SL Benfica","DC",38,82],
+["António Silva","SL Benfica","DC",22,83],
+["Aursnes","SL Benfica","MC",30,84],
+["Orkun Kökçü","SL Benfica","MC",25,84],
+["Pavlidis","SL Benfica","PL",27,85],
+["Aktürkoğlu","SL Benfica","EXT",27,83],
+["Prestianni","SL Benfica","EXT",20,78],
 
-    {
-        name: "André Silva",
-        club: "FC Porto",
-        position: "Avançado",
-        age: 30
-    },
+/* SPORTING */
+["Rui Silva","Sporting CP","GR",32,83],
+["Gonçalo Inácio","Sporting CP","DC",25,84],
+["Zeno Debast","Sporting CP","DC",22,82],
+["Hjulmand","Sporting CP","MC",27,86],
+["Pedro Gonçalves","Sporting CP","MO",28,85],
+["Trincão","Sporting CP","EXT",26,84],
+["Geny Catamo","Sporting CP","EXT",25,82],
+["Viktor Gyökeres","Sporting CP","PL",28,88],
 
-    {
-        name: "Luis Suárez",
-        club: "Sporting CP",
-        position: "Avançado",
-        age: 28
-    },
+/* PORTO */
+["Diogo Costa","FC Porto","GR",27,87],
+["Nehuén Pérez","FC Porto","DC",26,81],
+["Otávio","FC Porto","DC",24,80],
+["Alan Varela","FC Porto","MC",25,84],
+["Pepê","FC Porto","EXT",29,83],
+["Rodrigo Mora","FC Porto","MO",19,82],
+["Samu Omorodion","FC Porto","PL",22,85],
 
-    {
-        name: "Rafael Nel",
-        club: "Sporting CP",
-        position: "Avançado",
-        age: 22
-    },
+/* BRAGA */
+["João Carvalho","SC Braga","DC",29,77],
+["Vítor Gómez","SC Braga","DD",25,78],
+["João Moutinho","SC Braga","MC",40,80],
+["Ricardo Horta","SC Braga","EXT",31,82],
+["Fran Navarro","SC Braga","PL",28,79],
 
-    {
-        name: "Gonçalo Paciência",
-        club: "Santa Clara",
-        position: "Avançado",
-        age: 31
-    },
+/* VITORIA */
+["Bruno Varela","Vitória SC","GR",31,76],
+["Mikel Villanueva","Vitória SC","DC",33,75],
+["Tiago Silva","Vitória SC","MC",19,77],
+["Nelson Oliveira","Vitória SC","PL",35,76],
 
-    {
-        name: "André Clóvis",
-        club: "Académico Viseu",
-        position: "Avançado",
-        age: 28
-    },
+/* FAMALICÃO */
+["Ivan Zlobin","FC Famalicão","GR",29,74],
+["Ricardo Mangas","FC Famalicão","DE",27,75],
+["Sorriso","FC Famalicão","EXT",25,76],
+["Gil Dias","FC Famalicão","EXT",29,74],
 
-    {
-        name: "Chiquinho",
-        club: "Alverca",
-        position: "Médio",
-        age: 30
-    },
+/* RIO AVE */
+["Jhonatan","Rio Ave FC","GR",34,75],
+["Aderllan Santos","Rio Ave FC","DC",37,74],
+["Clayton","Rio Ave FC","PL",26,77],
 
-    {
-        name: "Abraham Marcus",
-        club: "Estrela da Amadora",
-        position: "Extremo",
-        age: 25
-    }
+/* GIL VICENTE */
+["Andrew","Gil Vicente FC","GR",25,73],
+["Félix Correia","Gil Vicente FC","EXT",25,77],
+["Depú","Gil Vicente FC","PL",25,75],
+
+/* LIGA 2 */
+["André Ferreira","FC Penafiel","GR",30,72],
+["Hélder Sá","FC Penafiel","DE",23,70],
+["João Silva","FC Penafiel","PL",30,71],
+
+["Fabio Pacheco","UD Leiria","MC",37,73],
+["Leandro Antunes","UD Leiria","PL",33,72],
+
+["Samu","FC Vizela","GR",29,73],
+["Jota Gonçalves","FC Vizela","DC",30,72],
+
+["Bruno Almeida","CD Tondela","EXT",29,74],
+["Ricardo Alves","CD Tondela","DC",33,71],
+
+/* LIGA 3 */
+["Moisés Conceição","SC Vianense","MC",24,68],
+["Pedro Soares","Paços de Ferreira","GR",30,70],
+["Nuno Valente","Varzim SC","MC",27,69],
+["Leandro Teixeira","Fafe","PL",25,68],
+["João Mendes","Trofense","EXT",28,67],
+["Rui Costa","Leça FC","PL",29,68],
+["André Claro","USC Paredes","PL",34,67],
+["Diogo Ramalho","AD Marco 09","MC",25,66],
+
+/* CAMPEONATO */
+["José Areias","Moncarapachense","DC",29,65],
+["Bruno Pereira","Sintrense","MC",27,66],
+["João Rodrigues","Serpa","PL",28,65],
+["Pedro Silva","Ovarense","GR",26,64],
+["Miguel Santos","Machico","MC",27,64],
+["Rafael Costa","Marialvas","PL",25,63],
+["Tiago Ferreira","Mortágua FC","DC",29,64],
+["André Sousa","Bragança","MC",30,65],
+["Filipe Andrade","Tirsense","PL",27,64],
+["Diogo Pinto","Salgueiros","GR",24,65]
 
 ];
 
 
-/* =========================
-   ESTADO DO JOGO
-========================= */
-
-let currentClub = "";
-let points = 0;
-let games = 0;
-
-
-/* =========================
-   COMEÇAR CARREIRA
-========================= */
-
-function startCareer() {
-
-    currentClub =
-        document.getElementById("clubSelect").value;
-
-    points = 0;
-    games = 0;
-
-    localStorage.setItem(
-        "z_manager_club",
-        currentClub
-    );
-
-    document.getElementById("menu")
-        .classList.add("hidden");
-
-    document.getElementById("game")
-        .classList.remove("hidden");
-
-    document.getElementById("clubName")
-        .innerText = currentClub;
-
-    updateStats();
-
-    loadSquad();
-}
-
-
-/* =========================
-   PLANTEL
-========================= */
-
-function loadSquad() {
-
-    const squad =
-        document.getElementById("squad");
-
-    squad.innerHTML = "";
-
-    const clubPlayers =
-        players.filter(
-            player =>
-            player.club === currentClub
-        );
-
-    if (clubPlayers.length === 0) {
-
-        squad.innerHTML = `
-        <tr>
-            <td colspan="3">
-                Plantel completo será carregado
-                na versão de dados.
-            </td>
-        </tr>
-        `;
-
-        return;
-    }
-
-    clubPlayers.forEach(player => {
-
-        squad.innerHTML += `
-
-        <tr>
-
-            <td>
-                ${player.name}
-            </td>
-
-            <td>
-                ${player.position}
-            </td>
-
-            <td>
-                ${player.age}
-            </td>
-
-        </tr>
-
-        `;
-
-    });
-
-}
-
-
-/* =========================
-   SIMULAR JOGO
-========================= */
-
-function simulateMatch() {
-
-    games++;
-
-    const win =
-        Math.random() > 0.45;
-
-    let text;
-
-    if (win) {
-
-        points += 3;
-
-        text =
-        "🏆 Vitória! A equipa ganhou 3 pontos.";
-
-    } else {
-
-        text =
-        "🤝 Empate. A equipa conquistou 1 ponto.";
-
-        points += 1;
-
-    }
-
-    document.getElementById("result")
-        .classList.remove("hidden");
-
-    document.getElementById("resultText")
-        .innerText = text;
-
-    updateStats();
-
-}
-
-
-/* =========================
-   ESTATÍSTICAS
-========================= */
-
-function updateStats() {
-
-    document.getElementById("points")
-        .innerText = points;
-
-    document.getElementById("games")
-        .innerText = games;
-
-}
-
-
-/* =========================
-   MERCADO
-========================= */
-
-function transferMarket() {
-
-    alert(
-        "💰 Mercado de transferências\n\n" +
-        "O mercado completo será ativado " +
-        "na versão completa do jogo."
-    );
-
-}
-
-
-/* =========================
-   TÁTICAS
-========================= */
-
-function tactics() {
-
-    alert(
-        "🧠 Táticas\n\n" +
-        "4-3-3\n" +
-        "4-4-2\n" +
-        "4-2-3-1\n" +
-        "3-5-2"
-    );
-
-}
-
-
-/* =========================
-   ECRÃ COMPLETO
-========================= */
-
-function fullScreen() {
-
-    if (
-        document.documentElement.requestFullscreen
-    ) {
-
-        document.documentElement
-            .requestFullscreen();
-
-    }
-
-}
-
-
-/* =========================
-   CARREIRA GUARDADA
-========================= */
-
-window.onload = function() {
-
-    const saved =
-        localStorage.getItem(
-            "z_manager_club"
-        );
-
-    if (saved) {
-
-        document.getElementById(
-            "clubSelect"
-        ).value = saved;
-
-    }
-
+/* ===========================
+   ESTADO
+=========================== */
+
+let game = JSON.parse(localStorage.getItem("zmanagerGame")) || {
+ started:false,
+ manager:"José",
+ club:"",
+ league:"",
+ budget:1000000,
+ formation:"4-3-3",
+ week:1,
+ wins:0,
+ draws:0,
+ losses:0
 };
+
+
+/* ===========================
+   INICIALIZAÇÃO
+=========================== */
+
+function init(){
+
+ const leagues=Object.keys(clubs);
+
+ document.getElementById("clubCount").innerText =
+  leagues.reduce((n,l)=>n+clubs[l].length,0);
+
+ document.getElementById("playerCount").innerText=players.length;
+
+ fillSelect("startLeague",leagues);
+ fillSelect("clubLeague",leagues);
+ fillSelect("playerLeague",["Todas",...leagues]);
+ fillSelect("tableLeague",leagues);
+
+ fillStartClubs();
+ renderClubs();
+ renderPlayers();
+ renderMarket();
+ renderTactic();
+ renderTable();
+ renderFixtures();
+ renderCareer();
+
+ if(game.started){
+  document.getElementById("careerBox").innerHTML =
+   `<div class="notice">
+    Carreira atual: <b>${game.club}</b> • ${game.league}
+   </div>`;
+ }
+}
+
+function fillSelect(id,items){
+
+ const el=document.getElementById(id);
+ if(!el)return;
+
+ el.innerHTML=items.map(x =>
+  `<option value="${x}">${x}</option>`
+ ).join("");
+}
+
+function fillStartClubs(){
+
+ const league=document.getElementById("startLeague").value;
+ const el=document.getElementById("startClub");
+
+ el.innerHTML=clubs[league].map(c =>
+  `<option>${c}</option>`
+ ).join("");
+}
+
+
+/* ===========================
+   NAVEGAÇÃO
+=========================== */
+
+function page(id,button){
+
+ document.querySelectorAll(".page")
+  .forEach(x=>x.classList.remove("active"));
+
+ document.getElementById(id)
+  .classList.add("active");
+
+ document.querySelectorAll("nav button")
+  .forEach(x=>x.classList.remove("active"));
+
+ if(button)button.classList.add("active");
+
+ if(id==="clubes")renderClubs();
+ if(id==="jogadores")renderPlayers();
+ if(id==="mercado")renderMarket();
+ if(id==="liga")renderTable();
+ if(id==="calendario")renderFixtures();
+ if(id==="carreira")renderCareer();
+}
+
+
+/* ===========================
+   CARREIRA
+=========================== */
+
+function startCareer(){
+
+ game.started=true;
+ game.league=document.getElementById("startLeague").value;
+ game.club=document.getElementById("startClub").value;
+ game.budget=initialBudget(game.league);
+ game.week=1;
+ game.wins=0;
+ game.draws=0;
+ game.losses=0;
+
+ saveGame();
+
+ document.getElementById("careerBox").innerHTML=
+ `<div class="notice">
+ <b>Carreira criada!</b><br>
+ Clube: ${game.club}<br>
+ Competição: ${game.league}<br>
+ Orçamento: ${money(game.budget)}
+ </div>`;
+
+ renderMarket();
+ renderCareer();
+}
+
+function initialBudget(league){
+
+ if(league==="Primeira Liga")return 10000000;
+ if(league==="Segunda Liga")return 2500000;
+ if(league==="Liga 3")return 750000;
+ return 300000;
+}
+
+
+/* ===========================
+   CLUBES
+=========================== */
+
+function renderClubs(){
+
+ const league=document.getElementById("clubLeague").value;
+ const search=(document.getElementById("clubSearch")?.value||"")
+  .toLowerCase();
+
+ const list=clubs[league]
+  .filter(c=>c.toLowerCase().includes(search));
+
+ document.getElementById("clubList").innerHTML=
+ list.map(c=>{
+
+  const count=players.filter(p=>p[1]===c).length;
+
+  return `
+   <div class="card club" onclick='showClub(${JSON.stringify(c)})'>
+    <h3>${c}</h3>
+    <span class="badge">${league}</span>
+    <p class="muted">${count} jogadores na base</p>
+   </div>
+  `;
+
+ }).join("");
+}
+
+function showClub(club){
+
+ const list=players.filter(p=>p[1]===club);
+
+ document.getElementById("modalContent").innerHTML=`
+  <button class="secondary" onclick="closeModal()">Fechar</button>
+  <h2>${club}</h2>
+  <p class="muted">Plantel disponível na base do jogo</p>
+  ${list.length ?
+   list.map(playerHTML).join("") :
+   `<div class="notice">
+     Este clube ainda não tem jogadores carregados na base.
+     </div>`
+  }
+ `;
+
+ document.getElementById("modal").style.display="block";
+}
+
+
+/* ===========================
+   JOGADORES
+=========================== */
+
+function renderPlayers(){
+
+ const search=(document.getElementById("playerSearch")?.value||"")
+  .toLowerCase();
+
+ const league=document.getElementById("playerLeague").value;
+ const pos=document.getElementById("playerPosition").value;
+
+ let list=players.filter(p=>{
+
+  const text=p.join(" ").toLowerCase();
+
+  const leagueOK =
+   league==="Todas" ||
+   !league ||
+   clubs[league]?.includes(p[1]);
+
+  const posOK=!pos || p[2]===pos;
+
+  return text.includes(search)&&leagueOK&&posOK;
+ });
+
+ list.sort((a,b)=>b[4]-a[4]);
+
+ document.getElementById("playerList").innerHTML=
+  list.map(playerHTML).join("");
+}
+
+function playerHTML(p){
+
+ return `
+ <div class="player" onclick='showPlayer(${JSON.stringify(p)})'>
+  <div>
+   <strong>${p[0]}</strong>
+   <small>${p[1]} • ${p[2]} • ${p[3]} anos</small>
+  </div>
+  <div class="rating">${p[4]}</div>
+ </div>`;
+}
+
+function showPlayer(p){
+
+ document.getElementById("modalContent").innerHTML=`
+
+  <button class="secondary" onclick="closeModal()">Fechar</button>
+
+  <h2>${p[0]}</h2>
+
+  <p>${p[1]}</p>
+
+  <div class="grid">
+
+   <div class="card">
+    <b>Posição</b>
+    <div class="stat">${p[2]}</div>
+   </div>
+
+   <div class="card">
+    <b>Idade</b>
+    <div class="stat">${p[3]}</div>
+   </div>
+
+   <div class="card">
+    <b>Rating</b>
+    <div class="stat">${p[4]}</div>
+   </div>
+
+  </div>
+
+  <h3>Atributos</h3>
+
+  ${attribute("Técnica",p[4]-1)}
+  ${attribute("Físico",p[4])}
+  ${attribute("Passe",p[4]-2)}
+  ${attribute("Velocidade",p[4]+1)}
+  ${attribute("Decisão",p[4]-1)}
+
+ `;
+
+ document.getElementById("modal").style.display="block";
+}
+
+function attribute(name,value){
+
+ value=Math.max(40,Math.min(99,value));
+
+ return `
+ <div style="margin:12px 0">
+  <div style="display:flex;justify-content:space-between">
+   <span>${name}</span>
+   <b>${value}</b>
+  </div>
+  <div style="height:7px;background:#29292d;border-radius:5px">
+   <div style="
+    width:${value}%;
+    height:100%;
+    background:#e30613;
+    border-radius:5px">
+   </div>
+  </div>
+ </div>`;
+}
+
+
+/* ===========================
+   MERCADO
+=========================== */
+
+function renderMarket(){
+
+ const search=(document.getElementById("marketSearch")?.value||"")
+  .toLowerCase();
+
+ const list=players
+  .filter(p=>p[0].toLowerCase().includes(search))
+  .sort((a,b)=>b[4]-a[4]);
+
+ const info=document.getElementById("marketInfo");
+
+ if(!game.started){
+
+  info.innerHTML="Começa uma carreira para poderes contratar jogadores.";
+
+ }else{
+
+  info.innerHTML=
+   `<b>${game.club}</b> • Orçamento disponível:
+    <b>${money(game.budget)}</b>`;
+ }
+
+ document.getElementById("marketList").innerHTML=
+ list.map(p=>`
+
+ <div class="player">
+
+  <div>
+   <strong>${p[0]}</strong>
+   <small>${p[1]} • ${p[2]} • ${p[3]} anos</small>
+  </div>
+
+  <div>
+   <span class="rating">${p[4]}</span>
+   <button class="action"
+    onclick='makeOffer(${JSON.stringify(p)})'>
+    Contratar
+   </button>
+  </div>
+
+ </div>
+
+ `).join("");
+}
+
+function playerValue(p){
+
+ return Math.max(
+  50000,
+  Math.round(
+   p[4]*p[4]*1000*
+   (p[3]<24?1.5:1)
+  )
+ );
+}
+
+function makeOffer(p){
+
+ if(!game.started){
+  alert("Começa primeiro uma carreira.");
+  return;
+ }
+
+ const value=playerValue(p);
+
+ if(game.budget<value){
+  alert("Não tens orçamento suficiente.");
+  return;
+ }
+
+ game.budget-=value;
+
+ alert(
+  `${p[0]} foi contratado por ${money(value)}.`
+ );
+
+ saveGame();
+ renderMarket();
+ renderCareer();
+}
+
+
+/* ===========================
+   TÁTICA
+=========================== */
+
+function renderTactic(){
+
+ const formation=document.getElementById("formation")?.value;
+
+ if(!formation)return;
+
+ const positions={
+  "4-3-3":["GR","DD","DC","DC","DE","MC","MC","MC","EXT","PL","EXT"],
+  "4-2-3-1":["GR","DD","DC","DC","DE","MC","MC","MO","EXT","EXT","PL"],
+  "4-4-2":["GR","DD","DC","DC","DE","MD","MC","MC","ME","PL","PL"],
+  "3-5-2":["GR","DC","DC","DC","MD","MC","MC","MC","ME","PL","PL"],
+  "3-4-3":["GR","DC","DC","DC","MD","MC","MC","ME","EXT","PL","EXT"],
+  "5-3-2":["GR","DD","DC","DC","DE","MD","MC","MC","ME","PL","PL"]
+ };
+
+ document.getElementById("tacticBoard").innerHTML=`
+
+  <div class="card" style="margin-top:15px">
+
+   ${positions[formation].map((pos,i)=>`
+
+    <div style="
+     display:flex;
+     justify-content:space-between;
+     padding:10px;
+     border-bottom:1px solid #29292d">
+
+     <span>${i+1}. ${pos}</span>
+
+     <select style="width:60%">
+      ${players
+       .filter(p=>p[2]===pos)
+       .slice(0,10)
+       .map(p=>`<option>${p[0]}</option>`)
+       .join("")}
+     </select>
+
+    </div>
+
+   `).join("")}
+
+  </div>
+ `;
+}
+
+
+/* ===========================
+   CLASSIFICAÇÃO
+=========================== */
+
+function renderTable(){
+
+ const league=document.getElementById("tableLeague").value;
+ const list=clubs[league];
+
+ const rows=list.map((club,i)=>{
+
+  const seed=(i*17+7)%10;
+
+  return {
+   club,
+   j:5,
+   v:Math.max(0,4-seed%4),
+   e:seed%3,
+   d:seed%4
+  };
+
+ }).map(x=>{
+  x.gd=x.v*2-x.d;
+  x.pts=x.v*3+x.e;
+  return x;
+ });
+
+ if(game.started && game.league===league){
+
+  const mine=rows.find(x=>x.club===game.club);
+
+  if(mine){
+   mine.v=game.wins;
+   mine.e=game.draws;
+   mine.d=game.losses;
+   mine.j=game.wins+game.draws+game.losses;
+   mine.pts=mine.v*3+mine.e;
+   mine.gd=mine.v*2-mine.d;
+  }
+ }
+
+ rows.sort((a,b)=>b.pts-a.pts || b.gd-a.gd);
+
+ document.getElementById("tableBody").innerHTML=
+ rows.map((r,i)=>`
+  <tr>
+   <td>${i+1}</td>
+   <td><b>${r.club}</b></td>
+   <td>${r.j}</td>
+   <td>${r.v}</td>
+   <td>${r.e}</td>
+   <td>${r.d}</td>
+   <td>${r.gd>0?"+":""}${r.gd}</td>
+   <td><b>${r.pts}</b></td>
+  </tr>
+ `).join("");
+}
+
+
+/* ===========================
+   CALENDÁRIO
+=========================== */
+
+function renderFixtures(){
+
+ const box=document.getElementById("fixtures");
+
+ if(!game.started){
+
+  box.innerHTML=`
+   <div class="notice">
+    Começa uma carreira para veres o teu calendário.
+   </div>`;
+  return;
+ }
+
+ const opponents=
+  clubs[game.league]
+   .filter(c=>c!==game.club)
+   .slice(0,10);
+
+ box.innerHTML=
+  opponents.map((opp,i)=>`
+
+   <div class="card" style="margin:8px 0">
+
+    <span class="badge">Jornada ${i+1}</span>
+
+    <h3>
+     ${i%2===0 ?
+      game.club+" vs "+opp :
+      opp+" vs "+game.club}
+    </h3>
+
+    <button class="action"
+     onclick="playMatch('${opp}')">
+     Jogar
+    </button>
+
+   </div>
+
+  `).join("");
+}
+
+function playMatch(opponent){
+
+ if(!game.started)return;
+
+ const r=Math.random();
+
+ let result;
+
+ if(r<0.42){
+  game.wins++;
+  result="Vitória";
+ }else if(r<0.72){
+  game.draws++;
+  result="Empate";
+ }else{
+  game.losses++;
+  result="Derrota";
+ }
+
+ game.week++;
+
+ saveGame();
+
+ alert(
+  `${game.club} vs ${opponent}\n\nResultado: ${result}`
+ );
+
+ renderFixtures();
+ renderTable();
+ renderCareer();
+}
+
+
+/* ===========================
+   CARREIRA
+=========================== */
+
+function renderCareer(){
+
+ const box=document.getElementById("careerDetails");
+
+ if(!game.started){
+
+  box.innerHTML=`
+   <div class="notice">
+    Ainda não tens uma carreira.
+   </div>`;
+  return;
+ }
+
+ const games=game.wins+game.draws+game.losses;
+ const points=game.wins*3+game.draws;
+
+ box.innerHTML=`
+
+ <div class="grid">
+
+  <div class="card">
+   <div class="muted">Clube</div>
+   <h2>${game.club}</h2>
+  </div>
+
+  <div class="card">
+   <div class="muted">Competição</div>
+   <h2>${game.league}</h2>
+  </div>
+
+  <div class="card">
+   <div class="muted">Orçamento</div>
+   <h2>${money(game.budget)}</h2>
+  </div>
+
+  <div class="card">
+   <div class="muted">Jornada</div>
+   <h2>${game.week}</h2>
+  </div>
+
+ </div>
+
+ <div class="grid" style="margin-top:15px">
+
+  <div class="card">
+   <div class="stat">${games}</div>
+   <div class="muted">Jogos</div>
+  </div>
+
+  <div class="card">
+   <div class="stat">${game.wins}</div>
+   <div class="muted">Vitórias</div>
+  </div>
+
+  <div class="card">
+   <div class="stat">${game.draws}</div>
+   <div class="muted">Empates</div>
+  </div>
+
+  <div class="card">
+   <div class="stat">${game.losses}</div>
+   <div class="muted">Derrotas</div>
+  </div>
+
+  <div class="card">
+   <div class="stat">${points}</div>
+   <div class="muted">Pontos</div>
+  </div>
+
+ </div>
+ `;
+}
+
+
+/* ===========================
+   GUARDAR
+=========================== */
+
+function saveGame(){
+
+ game.formation=
+  document.getElementById("formation")?.value ||
+  game.formation;
+
+ localStorage.setItem(
+  "zmanagerGame",
+  JSON.stringify(game)
+ );
+
+ renderCareer();
+}
+
+function resetGame(){
+
+ if(confirm("Apagar a carreira atual?")){
+
+  localStorage.removeItem("zmanagerGame");
+
+  location.reload();
+ }
+}
+
+
+/* ===========================
+   MODAL
+=========================== */
+
+function closeModal(e){
+
+ if(!e || e.target.id==="modal"){
+  document.getElementById("modal").style.display="none";
+ }
+}
+
+
+/* ===========================
+   UTIL
+=========================== */
+
+function money(value){
+
+ return new Intl.NumberFormat(
+  "pt-PT",
+  {
+   style:"currency",
+   currency:"EUR",
+   maximumFractionDigits:0
+  }
+ ).format(value);
+}
+
+
+/* ===========================
+   START
+=========================== */
+
+init();
 
 </script>
 
