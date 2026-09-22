@@ -1,0 +1,616 @@
+<!DOCTYPE html>
+<html lang="pt">
+<head>
+<meta charset="UTF-8">
+
+<meta name="viewport"
+      content="width=device-width, initial-scale=1, viewport-fit=cover">
+
+<meta name="theme-color" content="#080808">
+
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+<meta name="apple-mobile-web-app-title" content="Z Manager">
+
+<title>Z Manager Portugal 26/27</title>
+
+<style>
+* {
+    box-sizing: border-box;
+    -webkit-tap-highlight-color: transparent;
+}
+
+body {
+    margin: 0;
+    background: #080808;
+    color: white;
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Arial, sans-serif;
+}
+
+header {
+    background: linear-gradient(135deg, #050505, #d00018);
+    padding: 18px;
+    text-align: center;
+}
+
+.logo {
+    font-size: 42px;
+    font-weight: 900;
+}
+
+.logo span {
+    color: #ff1830;
+}
+
+.subtitle {
+    color: #ddd;
+    margin-top: 3px;
+}
+
+main {
+    max-width: 1100px;
+    margin: auto;
+    padding: 15px;
+}
+
+.card {
+    background: #17171b;
+    border: 1px solid #29292e;
+    border-radius: 16px;
+    padding: 18px;
+    margin-bottom: 15px;
+}
+
+h2 {
+    margin-top: 0;
+}
+
+select,
+button {
+    width: 100%;
+    padding: 15px;
+    margin: 6px 0;
+    border: none;
+    border-radius: 11px;
+    font-size: 16px;
+    font-weight: bold;
+}
+
+select {
+    background: #29292e;
+    color: white;
+}
+
+button {
+    background: #d00018;
+    color: white;
+}
+
+button:active {
+    transform: scale(.98);
+}
+
+.grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 10px;
+}
+
+.stat {
+    background: #232328;
+    padding: 15px;
+    border-radius: 12px;
+}
+
+.stat-number {
+    font-size: 25px;
+    font-weight: bold;
+}
+
+.small {
+    color: #999;
+    font-size: 13px;
+}
+
+table {
+    width: 100%;
+    border-collapse: collapse;
+}
+
+th,
+td {
+    padding: 10px 5px;
+    border-bottom: 1px solid #303035;
+    text-align: left;
+}
+
+.nav {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 7px;
+}
+
+.hidden {
+    display: none;
+}
+
+@media (orientation: landscape) {
+
+    main {
+        max-width: 1150px;
+    }
+
+    .grid {
+        grid-template-columns: repeat(4, 1fr);
+    }
+
+    header {
+        padding: 10px;
+    }
+
+    .logo {
+        font-size: 32px;
+    }
+}
+</style>
+</head>
+
+<body>
+
+<header>
+
+    <div class="logo">
+        <span>Z</span> MANAGER
+    </div>
+
+    <div class="subtitle">
+        Portugal • 2026/27
+    </div>
+
+</header>
+
+<main>
+
+    <!-- MENU PRINCIPAL -->
+
+    <div id="menu" class="card">
+
+        <h2>⚽ Nova carreira</h2>
+
+        <p class="small">
+            Escolhe o clube que queres treinar.
+        </p>
+
+        <select id="clubSelect">
+
+            <option>Benfica</option>
+            <option>FC Porto</option>
+            <option>Sporting CP</option>
+            <option>SC Braga</option>
+            <option>Vitória SC</option>
+            <option>Gil Vicente</option>
+            <option>Famalicão</option>
+            <option>Rio Ave</option>
+            <option>Santa Clara</option>
+            <option>Nacional</option>
+            <option>Estrela da Amadora</option>
+            <option>Casa Pia</option>
+            <option>Alverca</option>
+            <option>Marítimo</option>
+            <option>Académico Viseu</option>
+
+        </select>
+
+        <button onclick="startCareer()">
+            COMEÇAR CARREIRA
+        </button>
+
+        <button onclick="fullScreen()">
+            ⛶ ECRÃ COMPLETO
+        </button>
+
+    </div>
+
+
+    <!-- JOGO -->
+
+    <div id="game" class="hidden">
+
+        <div class="card">
+
+            <h2 id="clubName"></h2>
+
+            <div class="grid">
+
+                <div class="stat">
+                    <div class="stat-number">2026/27</div>
+                    <div class="small">Época</div>
+                </div>
+
+                <div class="stat">
+                    <div id="budget" class="stat-number">
+                        €10M
+                    </div>
+                    <div class="small">Orçamento</div>
+                </div>
+
+                <div class="stat">
+                    <div id="points" class="stat-number">
+                        0
+                    </div>
+                    <div class="small">Pontos</div>
+                </div>
+
+                <div class="stat">
+                    <div id="games" class="stat-number">
+                        0
+                    </div>
+                    <div class="small">Jogos</div>
+                </div>
+
+            </div>
+
+        </div>
+
+
+        <!-- PLANTEL -->
+
+        <div class="card">
+
+            <h3>👥 Plantel</h3>
+
+            <table>
+
+                <thead>
+
+                    <tr>
+                        <th>Jogador</th>
+                        <th>Posição</th>
+                        <th>Idade</th>
+                    </tr>
+
+                </thead>
+
+                <tbody id="squad"></tbody>
+
+            </table>
+
+        </div>
+
+
+        <!-- AÇÕES -->
+
+        <div class="card">
+
+            <h3>🎮 Gestão</h3>
+
+            <div class="nav">
+
+                <button onclick="simulateMatch()">
+                    ⚽ Jornada
+                </button>
+
+                <button onclick="transferMarket()">
+                    💰 Mercado
+                </button>
+
+                <button onclick="tactics()">
+                    🧠 Táticas
+                </button>
+
+            </div>
+
+        </div>
+
+
+        <!-- RESULTADO -->
+
+        <div id="result" class="card hidden">
+
+            <h3>📅 Último jogo</h3>
+
+            <div id="resultText"></div>
+
+        </div>
+
+    </div>
+
+</main>
+
+
+<script>
+
+/* =========================
+   JOGADORES
+========================= */
+
+const players = [
+
+    {
+        name: "Diogo Costa",
+        club: "FC Porto",
+        position: "Guarda-redes",
+        age: 26
+    },
+
+    {
+        name: "André Silva",
+        club: "FC Porto",
+        position: "Avançado",
+        age: 30
+    },
+
+    {
+        name: "Luis Suárez",
+        club: "Sporting CP",
+        position: "Avançado",
+        age: 28
+    },
+
+    {
+        name: "Rafael Nel",
+        club: "Sporting CP",
+        position: "Avançado",
+        age: 22
+    },
+
+    {
+        name: "Gonçalo Paciência",
+        club: "Santa Clara",
+        position: "Avançado",
+        age: 31
+    },
+
+    {
+        name: "André Clóvis",
+        club: "Académico Viseu",
+        position: "Avançado",
+        age: 28
+    },
+
+    {
+        name: "Chiquinho",
+        club: "Alverca",
+        position: "Médio",
+        age: 30
+    },
+
+    {
+        name: "Abraham Marcus",
+        club: "Estrela da Amadora",
+        position: "Extremo",
+        age: 25
+    }
+
+];
+
+
+/* =========================
+   ESTADO DO JOGO
+========================= */
+
+let currentClub = "";
+let points = 0;
+let games = 0;
+
+
+/* =========================
+   COMEÇAR CARREIRA
+========================= */
+
+function startCareer() {
+
+    currentClub =
+        document.getElementById("clubSelect").value;
+
+    points = 0;
+    games = 0;
+
+    localStorage.setItem(
+        "z_manager_club",
+        currentClub
+    );
+
+    document.getElementById("menu")
+        .classList.add("hidden");
+
+    document.getElementById("game")
+        .classList.remove("hidden");
+
+    document.getElementById("clubName")
+        .innerText = currentClub;
+
+    updateStats();
+
+    loadSquad();
+}
+
+
+/* =========================
+   PLANTEL
+========================= */
+
+function loadSquad() {
+
+    const squad =
+        document.getElementById("squad");
+
+    squad.innerHTML = "";
+
+    const clubPlayers =
+        players.filter(
+            player =>
+            player.club === currentClub
+        );
+
+    if (clubPlayers.length === 0) {
+
+        squad.innerHTML = `
+        <tr>
+            <td colspan="3">
+                Plantel completo será carregado
+                na versão de dados.
+            </td>
+        </tr>
+        `;
+
+        return;
+    }
+
+    clubPlayers.forEach(player => {
+
+        squad.innerHTML += `
+
+        <tr>
+
+            <td>
+                ${player.name}
+            </td>
+
+            <td>
+                ${player.position}
+            </td>
+
+            <td>
+                ${player.age}
+            </td>
+
+        </tr>
+
+        `;
+
+    });
+
+}
+
+
+/* =========================
+   SIMULAR JOGO
+========================= */
+
+function simulateMatch() {
+
+    games++;
+
+    const win =
+        Math.random() > 0.45;
+
+    let text;
+
+    if (win) {
+
+        points += 3;
+
+        text =
+        "🏆 Vitória! A equipa ganhou 3 pontos.";
+
+    } else {
+
+        text =
+        "🤝 Empate. A equipa conquistou 1 ponto.";
+
+        points += 1;
+
+    }
+
+    document.getElementById("result")
+        .classList.remove("hidden");
+
+    document.getElementById("resultText")
+        .innerText = text;
+
+    updateStats();
+
+}
+
+
+/* =========================
+   ESTATÍSTICAS
+========================= */
+
+function updateStats() {
+
+    document.getElementById("points")
+        .innerText = points;
+
+    document.getElementById("games")
+        .innerText = games;
+
+}
+
+
+/* =========================
+   MERCADO
+========================= */
+
+function transferMarket() {
+
+    alert(
+        "💰 Mercado de transferências\n\n" +
+        "O mercado completo será ativado " +
+        "na versão completa do jogo."
+    );
+
+}
+
+
+/* =========================
+   TÁTICAS
+========================= */
+
+function tactics() {
+
+    alert(
+        "🧠 Táticas\n\n" +
+        "4-3-3\n" +
+        "4-4-2\n" +
+        "4-2-3-1\n" +
+        "3-5-2"
+    );
+
+}
+
+
+/* =========================
+   ECRÃ COMPLETO
+========================= */
+
+function fullScreen() {
+
+    if (
+        document.documentElement.requestFullscreen
+    ) {
+
+        document.documentElement
+            .requestFullscreen();
+
+    }
+
+}
+
+
+/* =========================
+   CARREIRA GUARDADA
+========================= */
+
+window.onload = function() {
+
+    const saved =
+        localStorage.getItem(
+            "z_manager_club"
+        );
+
+    if (saved) {
+
+        document.getElementById(
+            "clubSelect"
+        ).value = saved;
+
+    }
+
+};
+
+</script>
+
+</body>
+</html>
